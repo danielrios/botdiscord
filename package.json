@@ -4,7 +4,7 @@
   "description": "Um bot para o discord",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon index.js"
+    "start": "node index.js"
   },
   "keywords": [],
   "author": "Daniel",
@@ -12,6 +12,7 @@
   "dependencies": {
     "axios": "^0.19.2",
     "discord.js": "^12.2.0",
+    "dotenv": "^8.2.0",
     "node-fetch": "^2.6.0",
     "nodemon": "^2.0.3"
   }
