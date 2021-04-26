@@ -1,17 +1,15 @@
 const fs = require('fs');
 const Discord = require('discord.js');
-const { prefix } = require('./config.json');
+const { prefix, token } = require('./config.json');
 
 const bot = new Discord.Client();
 bot.commands = new Discord.Collection();
 
 const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'));
 
-require('dotenv').config();
-
 for (const file of commandFiles) {
 	const command = require(`./commands/${file}`);
-	bot.commands.set(command.id, command);
+	bot.commands.set(command.name, command);
 }
 
 bot.once('ready', () => {
@@ -87,4 +85,4 @@ bot.on('raw', async dice => {
 
 })
 
-bot.login(process.env.TOKEN);
+bot.login(token);

@@ -3,14 +3,14 @@ module.exports = {
     description: 'Mostra os jogos recentes de um determinado usuário steam',
     async execute(msg, args) {
         const axios = require('axios');
-        require('dotenv').config();
+        const { steam_key } = require('../config.json');
 
         if (!args.length) {
             return msg.channel.send(`O comando precisa de um user da steam, ${msg.author}!`);
         }
         //Função para pegar o id de algum usuário da steam pelo seu username
         let getSteamID = async () => {
-            let response = await axios.get(`http://api.steampowered.com/ISteamUser/ResolveVanityURL/v0001/?key=${process.env.STEAM_KEY}&vanityurl=${args}`);
+            let response = await axios.get(`http://api.steampowered.com/ISteamUser/ResolveVanityURL/v0001/?key=${steam_key}&vanityurl=${args}`);
             steamid = response.data.response.steamid;
             return steamid;
         }
@@ -19,7 +19,7 @@ module.exports = {
 
         //Função para pegar os jogos mais recentes
         let getRecentlyPlayedGames = async () => {
-            let response = await axios.get(`http://api.steampowered.com/IPlayerService/GetRecentlyPlayedGames/v0001/?key=${process.env.STEAM_KEY}&steamid=${id}&format=json`);
+            let response = await axios.get(`http://api.steampowered.com/IPlayerService/GetRecentlyPlayedGames/v0001/?key=${steam_key}&steamid=${id}&format=json`);
             let info = response.data.response;
             return info;
         }
