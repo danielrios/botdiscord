@@ -14,6 +14,7 @@ for (const file of commandFiles) {
 
 bot.once('ready', () => {
     console.log('Pronto!');
+    console.log('testeee')
 })
 
 bot.on('message', msg => {
